@@ -41,6 +41,9 @@ The NSA CodeBreaker challenge is a year competion between schools where "The NSA
 
 ### Overview of each challenge
 
+#### Disclaimer
+Each competitor got slightly different files to insure that commands ran by one competitor couldn't simply be copy pasted by another competitor. As not all of the screen shots came from the same competitor, there will be slight discrepincies between spesific information. This should have no affect on the underlying methiod to solve each challenge though.
+
 #### Task 1
 The challenge discription is as follows:
 
