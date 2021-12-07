@@ -96,9 +96,11 @@ And you are given:
     OOPS forensic artifacts (artifacts.zip)
     
 And the flags are
+
+    The name of the machine the attackers can now access
+    The username the attackers can use to access that machine  
    
-   The name of the machine the attackers can now access
-   The username the attackers can use to access that machine
+   
 
 #### Task 5
 The challenge discription is as follows:
