@@ -25,6 +25,10 @@ The NSA CodeBreaker challenge is a year competion between schools where "The NSA
     - Complete Challenges 1-6 (excluding 4)
     - Final Documentation Writting
     - Challenge write-ups for: 
+  - Seth 
+    - Complete Challenges TBD
+    - Final Documentation Writing
+    - Challenge write-ups for TBD
   
 ### Attacks Seen and overview
   - Supply Chain
