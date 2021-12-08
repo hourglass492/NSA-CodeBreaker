@@ -2,14 +2,14 @@
 
 - The report should be in PDF format and should be a maximum of 12 pages long and not less than 7 pages.
  - The report should include:
-        - A general overview of the simulated system
-        - A table of groups' names and corresponding to each name his/her contribution percentage to the project and a short description of his/her contribution
-        - Introduction about the attack performed and its different techniques
-        - An attack explanation with commands used, screenshots of outputs and results (step by step)
-        - Your contribution if you used one of the posted projects (change attack protocol, complicated scenario.. etc). This contribution should be clarified in your report and the final project selection submission)
-        - Explanation of how to detect and defend against this attack
-        - Conclusion of lessons learned from an attacker perspective and system defender (administrator) perspective
-        - Sources of your information (references)
+   - A general overview of the simulated system
+   - A table of groups' names and corresponding to each name his/her contribution percentage to the project and a short description of his/her contribution
+   - Introduction about the attack performed and its different techniques
+   - An attack explanation with commands used, screenshots of outputs and results (step by step)
+   - Your contribution if you used one of the posted projects (change attack protocol, complicated scenario.. etc). This contribution should be clarified in your report and the final project selection submission)
+   - Explanation of how to detect and defend against this attack
+   - Conclusion of lessons learned from an attacker perspective and system defender (administrator) perspective
+   - Sources of your information (references)
 
 
 ### What is the NSA codebreaker challenge
