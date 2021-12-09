@@ -113,3 +113,18 @@ This seems like a pretty standard methiod to install an application from source 
 
 
 Now that we have the 2nd flag, let's pivot to looking for where the malware is on the image.
+
+To find the malware I had to make some assumptions. First we can do some metagaming by looking at the next two challenges. It is clear that we will have to reverse engineer this malware to figure out what it does. We can also assume that because this is a challenge aimed towoards students it will not be an incredibly difficult reverse engineering challenge. This means that there is a very high chance that the binary will not be stripped. To find all non striped exicutable files in the directory, we will simply run 
+
+`XXXXXXXX TODO XXXXXXXXXXXXX`
+
+which returns
+
+```
+XXXXXXXXXXXXXXXXXX TODO XXXXXXXXXXXXXXXx
+```
+
+This gives us a relitivly small list of files that would be possible to brute force the submition portal with. However, it's possible to read through this list and use logic to figure out which file is most likely the malware. We can see that many of these files are related to the same package. This means that the package maintainer probably just ships out non stripped binaries for some reason. 
+Scanning through all of the files we see make at the bottom. We already know that the build script calls make twice on startup, so it makes sense that it could be malisus. Also checking make on my system I see it is not normally stripped. Finally it makes sense that make would be the malicusus file from a CTF perspective. The authors could logically think that the participants would look at the files refrenced in the build_test.sh script because that is where the last flag was.
+
+Upon submitting the path to make, we succseed the challange.
