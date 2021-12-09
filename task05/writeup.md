@@ -109,4 +109,7 @@ This gives us the second flag.
 
 Looking through the script we get a better understanding of what this docker container does. Once it starts it downloads the source code to to /usr/local/src/repo, runs the autogen.sh script held in the repo and then calls make install with -j 4 as options and then calls make check.
 
-This seems like a pretty standard methiod to install an application from source code which makes sense
+This seems like a pretty standard methiod to install an application from source code which makes sense.
+
+
+Now that we have the 2nd flag, let's pivot to looking for where the malware is on the image.
