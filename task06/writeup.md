@@ -294,3 +294,5 @@ The previous is the username, IP, version number, and the public key. The variab
 ```C
 pubKey = tgexpgbgxulli(0x12);
 ```
+
+And at this point all of the team challenges are done.
