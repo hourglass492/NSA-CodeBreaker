@@ -60,6 +60,7 @@ And you are given:
     Network traffic heading to the LP (capture.pcap)
     DIB IP address ranges (ip_ranges.txt)
 
+Overview of how challenge was completed:
 
 #### Task 2
 The challenge discription is as follows:
@@ -76,6 +77,7 @@ And you are given
     Network proxy logs from Bluecoat server (proxy.log)
     Login data from domain controller (logins.json)
 
+Overview of how challenge was completed:
 
 
 #### Task 3
@@ -87,6 +89,9 @@ The challenge discription is as follows:
 And you are given:
 
     User's emails (emails.zip)
+
+Overview of how challenge was completed:
+
 
 #### Task 4
 The challenge discription is as follows:
@@ -105,6 +110,7 @@ And the flags are
     The username the attackers can use to access that machine  
    
    
+Overview of how challenge was completed:
 
 #### Task 5
 The challenge discription is as follows:
@@ -129,6 +135,7 @@ And the flags are:
   Enter the URL of the repository cloned when this image runs:
   Enter the full path to the malicious file present in the image:
 
+Overview of how challenge was completed:
 
 #### Task 6
 The challenge discription is as follows:
@@ -138,6 +145,27 @@ The challenge discription is as follows:
 
 And you are given no new files
 
+Overview of how challenge was completed:
 
 ### Detection and defense of attacks
 It is important to note that the senirio given assumes that the NSA had already compromised the malicus listening post and captured the packets to discover the comprimise. This is unrilistic for the average company as it is illigal to attack suspected mallisuous servers in the US. 
+
+
+#### task1
+##### Attackers Avoidance
+##### Improve Defence
+#### task2
+##### Attackers Avoidance
+##### Improve Defence
+#### task3
+##### Attackers Avoidance
+##### Improve Defence
+#### task4
+##### Attackers Avoidance
+##### Improve Defence
+#### task5
+##### Attackers Avoidance
+##### Improve Defence
+#### task6
+##### Attackers Avoidance
+##### Improve Defence
