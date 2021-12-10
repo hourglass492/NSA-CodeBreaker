@@ -1,4 +1,3 @@
-```C
 
 int kvhlfowzlznog(char *ip,uint16_t port,char *output,size_t length)
 
@@ -237,4 +236,4 @@ int kvhlfowzlznog(char *ip,uint16_t port,char *output,size_t length)
   __stack_chk_fail();
 }
 
-```
+

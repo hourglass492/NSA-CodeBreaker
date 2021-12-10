@@ -24,7 +24,7 @@ The NSA CodeBreaker challenge is a year competion between schools where "The NSA
   - Nicholas
     - Complete Challenges 1-6 (excluding 4)
     - Final Documentation Writting
-    - Challenge write-ups for: 5
+    - Challenge write-ups for: 5 6
   - Seth 
     - Complete Challenges TBD
     - Final Documentation Writing
@@ -57,6 +57,8 @@ The NSA CodeBreaker challenge is a year competion between schools where "The NSA
 Each competitor got slightly different files to insure that commands ran by one competitor couldn't simply be copy pasted by another competitor. As not all of the screen shots came from the same competitor, there will be slight discrepincies between spesific information. This should have no affect on the underlying methiod to solve each challenge though.
 
 #### Task 1
+[Full Writeup](task01/writeup.md)
+
 The challenge discription is as follows:
 
 > The NSA Cybersecurity Collaboration Center has a mission to prevent and eradicate threats to the US Defense Industrial Base (DIB). Based on information sharing agreements with several DIB companies, we need to determine if any of those companies are communicating with the actor's infrastructure.
@@ -71,6 +73,9 @@ And you are given:
 Overview of how challenge was completed:
 
 #### Task 2
+[Full Writeup](task02/writeup.md)
+
+
 The challenge discription is as follows:
  > NSA notified FBI, which notified the potentially-compromised DIB Companies. The companies reported the compromise to the Defense Cyber Crime Center (DC3). One of them, Online Operations and Production Services (OOPS) requested FBI assistance. At the request of the FBI, we've agreed to partner with them in order to continue the investigation and understand the compromise.
 
@@ -89,6 +94,9 @@ Overview of how challenge was completed:
 
 
 #### Task 3
+[Full Writeup](task03/writeup.md)
+
+
 The challenge discription is as follows:
  > With the provided information, OOPS was quickly able to identify the employee associated with the account. During the incident response interview, the user mentioned that they would have been checking email around the time that the communication occurred. They don't remember anything particularly weird from earlier, but it was a few weeks back, so they're not sure. OOPS has provided a subset of the user's inbox from the day of the communication.
  > Identify the message ID of the malicious email and the targeted server.
@@ -102,6 +110,9 @@ Overview of how challenge was completed:
 
 
 #### Task 4
+[Full Writeup](task04/writeup.md)
+
+
 The challenge discription is as follows:
  > A number of OOPS employees fell victim to the same attack, and we need to figure out what's been compromised! Examine the malware more closely to understand what it's doing. Then, use these artifacts to determine which account on the OOPS network has been compromised.
 
@@ -121,6 +132,8 @@ And the flags are
 Overview of how challenge was completed:
 
 #### Task 5
+[Full Writeup](task05/writeup.md)
+
 The challenge discription is as follows:
 
  > A forensic analysis of the server you identified reveals suspicious logons shortly after the malicious emails were sent. Looks like the actor moved deeper into OOPS' network. Yikes.
@@ -143,9 +156,11 @@ And the flags are:
   Enter the URL of the repository cloned when this image runs:
   Enter the full path to the malicious file present in the image:
 
-Overview of how challenge was completed:
+Overview of how challenge was completed: The tar image given is a complete docker image. Opening up the tar image and looking through the configuration json files gives the first flag. Then looking at the commands ran at startup gives a script that downloads the github repo from the link and the name of the malicius file. At this point, unpacking all of the layier 2 tar files and using find gives the full path.
 
 #### Task 6
+[Full Writeup](task06/writeup.md)
+
 The challenge discription is as follows:
 
  > Now that we've found a malicious artifact, the next step is to understand what it's doing. Identify some characteristics of the communications between the malicious artifact and the LP.
@@ -153,7 +168,7 @@ The challenge discription is as follows:
 
 And you are given no new files
 
-Overview of how challenge was completed:
+Overview of how challenge was completed: Drop the binary file into a reverse engineering program. After analizing source code, it becomes clear which functions are called to give the flags. At this point run the program in GDB (which needs to be installed on the docker image) and simply call the functions that give the flags.
 
 ### Detection and defense of attacks
 It is important to note that the senirio given assumes that the NSA had already compromised the malicus listening post and captured the packets to discover the comprimise. This is unrilistic for the average company as it is illigal to attack suspected mallisuous servers in the US. 
