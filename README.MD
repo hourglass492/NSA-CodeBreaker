@@ -57,6 +57,7 @@ The NSA CodeBreaker challenge is a year competion between schools where "The NSA
 Each competitor got slightly different files to insure that commands ran by one competitor couldn't simply be copy pasted by another competitor. As not all of the screen shots came from the same competitor, there will be slight discrepincies between spesific information. This should have no affect on the underlying methiod to solve each challenge though.
 
 #### Task 1
+[Full Writeup](task05/writeup.md)
 The challenge discription is as follows:
 
 > The NSA Cybersecurity Collaboration Center has a mission to prevent and eradicate threats to the US Defense Industrial Base (DIB). Based on information sharing agreements with several DIB companies, we need to determine if any of those companies are communicating with the actor's infrastructure.
@@ -121,6 +122,7 @@ And the flags are
 Overview of how challenge was completed:
 
 #### Task 5
+[Full Writeup](task05/writeup.md)
 The challenge discription is as follows:
 
  > A forensic analysis of the server you identified reveals suspicious logons shortly after the malicious emails were sent. Looks like the actor moved deeper into OOPS' network. Yikes.
