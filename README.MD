@@ -169,6 +169,12 @@ The tar image given is a complete docker image. Opening up the tar image and loo
 
 And you are given no new files
 
+##### And the flags are:
+
+  Enter the IP of the LP that the malicious artifact sends data to
+  Enter the public key of the LP (hex encoded)
+  Enter the version number reported by the malware
+
 ##### Overview of how challenge was completed:
 
 Drop the binary file into a reverse engineering program. After analizing source code, it becomes clear which functions are called to give the flags. At this point run the program in GDB (which needs to be installed on the docker image) and simply call the functions that give the flags.
