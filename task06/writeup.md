@@ -234,4 +234,63 @@ int kvhlfowzlznog(char *ip,uint16_t port,char *output,size_t length)
 
 At this point if we haden't guessed what the port was the 2nd argument passsed to the function we could definatly do that now. We also have seen the tgex function called enugh times that we are able to guess what it's purpose is simply from a black box perspective. It seems to be hiding the configuration strings needed for this program. This makes sense because anti virus software can be given certian strings (like a known bad IP) that cause it to block a program from running. Rather then simply hard code those values in, they are encrypted (or encoded since the key is also in the code) to prevent easy detection.
 
+At this point, let's look at how to do some dynamic analisis of this binary. The first thing to try is to simply run binary on my machine (Note: this is a bad idea when actually analizing malware as it could do real damage to your system. Always use a virtual machine or isolated machine.) This did not work easily as it requires some non standard libraries. While the error doesn't say what libraries is needed, after a bunch of work it seems to be the NaCL cryptography libraries. Simly installing the library did not work well so I desided to simply use the given docker image.
 
+To make sure everything runs properly, edit the files in the tar directory to downoald a git repo that actually exists, I used a random one I control, and then repack everything into a valid docker tar image.
+
+Next load the tar image into docker. (For me it was loaded under 48cf127d0fad.) and then run it with the remote host IP assigned to it and the local folder shared to the root home to allow persitant files.
+
+```bash
+#!/bin/bash
+
+sudo mkdir /sys/fs/cgroup/systemd
+sudo mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd
+
+docker run --net mynet123 --ip 198.51.100.209 -v ${PWD}:/root -it 48cf127d0fad bash --init-file /root/setup
+```
+This starts up the image and then runs the setup script which allows easy additons to the machine as you work with it.
+
+My script is:
+```bash
+#/bin/sh
+apk add curl
+apk add gdb
+
+#install GEF
+wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
+
+#remove lock file created by the malware - needed if you constantly restart the program
+while  :; do rm /tmp/.gglock >out 2>&1; sleep 10; done &
+
+apk add vim
+apk add tmux
+apk add strace
+git clone https://github.com/hourglass492/tmp.git  /usr/local/src/repo
+apk add file
+cd ~
+```
+
+Once all of these start it is possible to call functions within gdb.
+
+Simply start gdb with make as the target:
+```bash
+gdb make
+```
+
+Then set a breakpoint on main and call the function with the variables you want:
+
+```
+gef➤  p (char *) tgexpgbgxulli(5)
+$1 = 0x7f3e79f7c954 "unknown"
+gef➤  p (char *) tgexpgbgxulli(0x13)
+$2 = 0x7f3e79f7c9b4 "198.51.100.209"
+gef➤  p (char *) tgexpgbgxulli(0x11)
+$3 = 0x7f3e79f7ca14 "2.0.2.0-UQT"
+gef➤  p (char *) tgexpgbgxulli(0x12)
+$4 = 0x7f3e79f7ca74 "3\\\201\244]E\231\361\\XD\254\063\251y\237\302\221\033\310\370\314=\357^\352M\264\020izs"
+```
+The previous is the username, IP, version number, and the public key. The variable for the public key was found in the ozzumyndvjsex function (also included in the repo) from line 32:
+
+```C
+pubKey = tgexpgbgxulli(0x12);
+```
