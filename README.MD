@@ -146,32 +146,36 @@ The challenge discription is as follows:
 
  > Analyze the provided Docker image and identify the actor's techniques.
 
-And you are given:
+##### And you are given:
 
     PANIC Nightly Build + Test Docker Image (image.tar)
 
-And the flags are:
+##### And the flags are:
 
   Enter the email of the PANIC employee who maintains the image:
   Enter the URL of the repository cloned when this image runs:
   Enter the full path to the malicious file present in the image:
 
-Overview of how challenge was completed: The tar image given is a complete docker image. Opening up the tar image and looking through the configuration json files gives the first flag. Then looking at the commands ran at startup gives a script that downloads the github repo from the link and the name of the malicius file. At this point, unpacking all of the layier 2 tar files and using find gives the full path.
+##### Overview of how challenge was completed:
+The tar image given is a complete docker image. Opening up the tar image and looking through the configuration json files gives the first flag. Then looking at the commands ran at startup gives a script that downloads the github repo from the link and the name of the malicius file. At this point, unpacking all of the layier 2 tar files and using find gives the full path.
 
 #### Task 6
 [Full Writeup](task06/writeup.md)
 
-The challenge discription is as follows:
+##### The challenge discription is as follows:
 
  > Now that we've found a malicious artifact, the next step is to understand what it's doing. Identify some characteristics of the communications between the malicious artifact and the LP.
 
 
 And you are given no new files
 
-Overview of how challenge was completed: Drop the binary file into a reverse engineering program. After analizing source code, it becomes clear which functions are called to give the flags. At this point run the program in GDB (which needs to be installed on the docker image) and simply call the functions that give the flags.
+##### Overview of how challenge was completed:
+
+Drop the binary file into a reverse engineering program. After analizing source code, it becomes clear which functions are called to give the flags. At this point run the program in GDB (which needs to be installed on the docker image) and simply call the functions that give the flags.
+
 
 ### Detection and defense of attacks
-It is important to note that the senirio given assumes that the NSA had already compromised the malicus listening post and captured the packets to discover the comprimise. This is unrilistic for the average company as it is illigal to attack suspected mallisuous servers in the US. 
+It is important to note that the senirio given assumes that the NSA had already compromised the malicus listening post and captured the packets to discover the comprimise. This is unrilistic for the average company as it is illigal to attack suspected mallisuous servers in the US. However, it is perfectly resonable for this whole thing to be kicked off by susspicus communication to an unknown server by several computers within a controled corporate network. 
 
 
 #### task1
