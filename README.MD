@@ -123,7 +123,11 @@ And you are given:
 
     PANIC Nightly Build + Test Docker Image (image.tar)
 
+And the flags are:
 
+  Enter the email of the PANIC employee who maintains the image:
+  Enter the URL of the repository cloned when this image runs:
+  Enter the full path to the malicious file present in the image:
 
 
 #### Task 6
