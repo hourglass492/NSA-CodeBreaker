@@ -165,7 +165,9 @@ It is important to note that the senirio given assumes that the NSA had already 
 ##### Improve Defence
 #### task5
 ##### Attackers Avoidance
+In this case the malware was detected on the machine due in part of guessing based on the nature of CTF's. If this wasn't the case it would have been possible to hide the malware better. This obvipously would mean stripping the binary so that it does not stand out. However, editing a known binary such as make leaves the attacker vulnerable to programs such as debsums which compares the hash of all of the binaries on the computer to a known good one on a remote system. This would be possible to get around however by infecting some underlying code needed in checking the hash. The idea behind this was first stated in an paper by Ken Thompson [on trusting trust](https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf). By infecting the debsums equivelent it would be possible to hard code it to always return that debsums is correct. If there is not a debsums type application installed trojonizing make would work just fine
 ##### Improve Defence
+The main defenses against trojinized binarys that we looked at in this challenge is cryptographic signatures and certificats. The idea would be using known good hashes for each binary to check against. If any of the binaries were edited to make them malicuis then the hashes would change. It would also be possible to sign the docker image itself with a gpg key. Assuming that the attackers did not find this key on the server, they would be unable to change anything in the docker image without breaking the signature attached to it.
 #### task6
 ##### Attackers Avoidance
 ##### Improve Defence
