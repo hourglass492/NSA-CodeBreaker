@@ -146,32 +146,36 @@ The challenge discription is as follows:
 
  > Analyze the provided Docker image and identify the actor's techniques.
 
-And you are given:
+##### And you are given:
 
     PANIC Nightly Build + Test Docker Image (image.tar)
 
-And the flags are:
+##### And the flags are:
 
   Enter the email of the PANIC employee who maintains the image:
   Enter the URL of the repository cloned when this image runs:
   Enter the full path to the malicious file present in the image:
 
-Overview of how challenge was completed: The tar image given is a complete docker image. Opening up the tar image and looking through the configuration json files gives the first flag. Then looking at the commands ran at startup gives a script that downloads the github repo from the link and the name of the malicius file. At this point, unpacking all of the layier 2 tar files and using find gives the full path.
+##### Overview of how challenge was completed:
+The tar image given is a complete docker image. Opening up the tar image and looking through the configuration json files gives the first flag. Then looking at the commands ran at startup gives a script that downloads the github repo from the link and the name of the malicius file. At this point, unpacking all of the layier 2 tar files and using find gives the full path.
 
 #### Task 6
 [Full Writeup](task06/writeup.md)
 
-The challenge discription is as follows:
+##### The challenge discription is as follows:
 
  > Now that we've found a malicious artifact, the next step is to understand what it's doing. Identify some characteristics of the communications between the malicious artifact and the LP.
 
 
 And you are given no new files
 
-Overview of how challenge was completed: Drop the binary file into a reverse engineering program. After analizing source code, it becomes clear which functions are called to give the flags. At this point run the program in GDB (which needs to be installed on the docker image) and simply call the functions that give the flags.
+##### Overview of how challenge was completed:
+
+Drop the binary file into a reverse engineering program. After analizing source code, it becomes clear which functions are called to give the flags. At this point run the program in GDB (which needs to be installed on the docker image) and simply call the functions that give the flags.
+
 
 ### Detection and defense of attacks
-It is important to note that the senirio given assumes that the NSA had already compromised the malicus listening post and captured the packets to discover the comprimise. This is unrilistic for the average company as it is illigal to attack suspected mallisuous servers in the US. 
+It is important to note that the senirio given assumes that the NSA had already compromised the malicus listening post and captured the packets to discover the comprimise. This is unrilistic for the average company as it is illigal to attack suspected mallisuous servers in the US. However, it is perfectly resonable for this whole thing to be kicked off by susspicus communication to an unknown server by several computers within a controled corporate network. 
 
 
 #### task1
@@ -193,4 +197,6 @@ In this case the malware was detected on the machine due in part of guessing bas
 The main defenses against trojinized binarys that we looked at in this challenge is cryptographic signatures and certificats. The idea would be using known good hashes for each binary to check against. If any of the binaries were edited to make them malicuis then the hashes would change. It would also be possible to sign the docker image itself with a gpg key. Assuming that the attackers did not find this key on the server, they would be unable to change anything in the docker image without breaking the signature attached to it.
 #### task6
 ##### Attackers Avoidance
+From the attacker side, the same advantages from task 5 apply, however with a larger focus on obfuscating the code. To a certian extent, you have to assume that your malware will eventiaully be found by the defenders. At this point obfuscation and packing are incredibly important and many different methiods could be used. Static analis could be made significantly more difficult by using layers of encryption and encoding that slowly undoes itself each round. This would even be more effective if the entire binary is never un encrypted at any one time to hinder dynamic analisis. Another ideal would be requieing the malware to retrieve a remote key. This could mean that if you suspect your malware is about to be or already has been captured you can stop serving up the key. If the defenders haven't captured the key yet the sample may be useless.
 ##### Improve Defence
+Malware anlising in this case is an incredibly interesting a detail driven job. A couple of the important things that would help the defender in this case are detailed log files and a large amount of time and extra resources to work on this project. There is a direct corrilation between how much time an alisit is able to put into a problem and how much information they are able to get out of it. In this case, it may make sense for the company to stop looking at the malware after task 6 and they know what it is doing. In fact there may even be enough to create an AV rule that detects similar implants and that is good enough for many companies. However, deeper analisis (as done in the solo tasks) can help give an much deeper understand of the ATP that we are dealing with and gives a chance to bring them to justice. The additonal liog files mentioned as will would be important to both detect the attack and to store a key sent over te wire if the malware uswed encryption as  mentioned abouve.
