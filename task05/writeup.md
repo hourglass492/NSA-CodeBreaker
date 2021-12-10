@@ -1,3 +1,5 @@
+### First insights
+
 At this point in the investigation we have a solid understanding on what systems the attackers havegained access to, however we do not have a complete understanding on what the attacker is doing within the network. The senerio states that one of the machines that the attacker where able to get access on was a Docker image registry server.
 
 While all images are still on the server, the integrity of the images can not be garanteeded. Only one of the servers have a recent modification date, so our next chalenge is to preform forensic checks on that docker image to ensure that no problems have been introduced to it.
@@ -37,10 +39,13 @@ For this challenge we are given a tarball of the docker image with the following
 
  ```
 
+### Understanding Docker
+
 This required a little bit of research to understand what docker files actually are.
 
 After extensive research online and in the docker offical documents the cliff notes is that XXXXXXXXXXXXXXXXXXX
 
+### Looking at configurations
 
 Using this knowlege we know that it is possible for us to preform both static and dynamic analisis of this docker image to find the flags. Let's first begin by unpacking the tarball and reading through the information included in it.
 
@@ -73,11 +78,9 @@ Flag1: harris.emily@panic.invalid
 
 Both of these flags were submitted to portal to conferm they were correct to insure that we were on the correct track. Luckally we were and were able to continue forward.
 
-At this point there are 2 paths to find the final flags and we will walk through both of them.
+At this point there are 2 paths to find the final flags, dynamic and static analisis, however we will only go through the static methiod in this task. Task06 goes through some dynamic analisis methiods that could easly be applied here.
 
-### Dynamic Analisis methiod
-
-### Static analisis methiod
+### Examining the image with  Static analisis 
 As we learned earlier, docker images contain all of the files that will run in the image when it starts. Because we know that this docker image must download the code from a git repository on start up we can assume that there is some sort of startup script within the docker image that runs on creation. We can guess that this code downloads the remote git repo and then preforms some sort of checks with it.
 
 To find the remote github repo then we need to navigate through the many different files contained within the given tarball. To do that we will first unpack the first tarball to allow vim to properly parse the lower layered tarballs.
@@ -116,13 +119,16 @@ Now that we have the 2nd flag, let's pivot to looking for where the malware is o
 
 To find the malware I had to make some assumptions. First we can do some metagaming by looking at the next two challenges. It is clear that we will have to reverse engineer this malware to figure out what it does. We can also assume that because this is a challenge aimed towoards students it will not be an incredibly difficult reverse engineering challenge. This means that there is a very high chance that the binary will not be stripped. To find all non striped exicutable files in the directory, we will simply run 
 
-`XXXXXXXX TODO XXXXXXXXXXXXX`
+`find . -type f -exec file {} + | grep ELF | grep "not stripped"`
 
 which returns
 
 ```
-XXXXXXXXXXXXXXXXXX TODO XXXXXXXXXXXXXXXx
+ ...
+./usr/bin/make:                                                                                    ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not stripped
+...
 ```
+(The entire returned output is in search_for_non_stripped which is in this directory)
 
 This gives us a relitivly small list of files that would be possible to brute force the submition portal with. However, it's possible to read through this list and use logic to figure out which file is most likely the malware. We can see that many of these files are related to the same package. This means that the package maintainer probably just ships out non stripped binaries for some reason. 
 Scanning through all of the files we see make at the bottom. We already know that the build script calls make twice on startup, so it makes sense that it could be malisus. Also checking make on my system I see it is not normally stripped. Finally it makes sense that make would be the malicusus file from a CTF perspective. The authors could logically think that the participants would look at the files refrenced in the build_test.sh script because that is where the last flag was.

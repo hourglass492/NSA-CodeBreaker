@@ -1,0 +1,77 @@
+bash-5.1# find . -type f -exec file {} + | grep ELF | grep "not stripped"
+./usr/lib/crtn.o:                                                                            ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), with debug_info, not stripped
+./usr/lib/cairo/libcairo-trace.so:                                                           ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, with debug_info, not stripped
+./usr/lib/crti.o:                                                                            ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), with debug_info, not stripped
+./usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/crtbeginS.o:                                   ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/crtprec80.o:                                  ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), with debug_info, not stripped
+./usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/crtend.o:                                     ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/crtprec64.o:                                  ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), with debug_info, not stripped
+./usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/crtprec32.o:                                  ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), with debug_info, not stripped
+./usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/crtendS.o:                                    ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/crtfastmath.o:                                ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), with debug_info, not stripped
+./usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/crtbegin.o:                                   ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/crtbeginT.o:                                  ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./usr/lib/rcrt1.o:                                                                                   ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), with debug_info, not stripped
+./usr/lib/crt1.o:                                                                                    ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), with debug_info, not stripped
+./usr/lib/libcairo-gobject.so.2.11600.0:                                                             ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, with debug_info, not stripped
+./usr/lib/Scrt1.o:                                                                                   ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), with debug_info, not stripped
+./usr/bin/make:                                                                                    ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not stripped
+./usr/bin/getent:                                                                                  ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not stripped
+./usr/bin/iconv:                                                                                   ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not stripped
+./usr/bin/getconf:                                                                                 ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not stripped
+./usr/bin/cairo-sphinx:                                                                            ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debu_info, not stripped
+
+./root/patched_make:                                                                                   ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not stripped
+./root/edited:                                                                                         ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not stripped
+./root/make:                                                                                           ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/bin/nacl-sha256:                                       ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=4dd841fad4085ecc3d1a1029e35cf325dd8ac8e7, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/bin/nacl-sha512:                                       ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=2a9c19b02085fb97e842732762b7baea310bb498, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/bin/curvecpprintkey:                                   ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=01d7872c2d621b2dd68dca45ad406d3f5185e6db, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/bin/curvecpmakekey:                                    ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=67fa6c67a6fa2436ec939dfd20abe6e762717332, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/bin/curvecpclient:                                     ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=62de419543e49bd9e146288aff0fac7119ad3549, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/bin/curvecpserver:                                     ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=84159d5081f2891d083621656fc52a8cf16a8876, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/bin/curvecpmessage:                                    ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=c39d52d47a1dfbddb0c31d713e2716b389e2296b, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/lib/amd64/cpucycles.o:                                 ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/lib/amd64/randombytes.o:                               ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/blocking.o:                               ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/byte_copy.o:                              ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/byte_isequal.o:                           ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/byte_zero.o:                              ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/crypto_block.o:                           ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/die.o:                                    ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/e.o:                                      ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/hexparse.o:                               ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/load.o:                                   ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/nameparse.o:                              ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/nanoseconds.o:                            ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/open_cwd.o:                               ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/open_lock.o:                              ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/open_pipe.o:                              ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/open_read.o:                              ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/open_write.o:                             ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/portparse.o:                              ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/randommod.o:                              ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/safenonce.o:                              ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/savesync.o:                               ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/socket_bind.o:                            ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/socket_recv.o:                            ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/socket_send.o:                            ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/socket_udp.o:                             ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/uint16_pack.o:                            ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/uint16_unpack.o:                          ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/uint32_pack.o:                            ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/uint32_unpack.o:                          ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/uint64_pack.o:                            ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/uint64_unpack.o:                          ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/writeall.o:                               ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/curvecpprintkey.o:                        ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/curvecpmakekey.o:                         ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/curvecpclient.o:                          ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/curvecpserver.o:                          ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/curvecpmessage.o:                         ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/curvecpprintkey:                          ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=01d7872c2d621b2dd68dca45ad406d3f5185e6db, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/curvecpmakekey:                           ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=67fa6c67a6fa2436ec939dfd20abe6e762717332, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/curvecpclient:                            ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=62de419543e49bd9e146288aff0fac7119ad3549, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/curvecpserver:                            ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=84159d5081f2891d083621656fc52a8cf16a8876, for GNU/Linux 3.2.0, not stripped
+./root/nacl-20110221/build/userhpelitebook820g3/work/compile/curvecpmessage:                           ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=c39d52d47a1dfbddb0c31d713e2716b389e2296b, for GNU/Linux 3.2.0, not stripped
+./root/decode:                                                                                         ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not strippedg

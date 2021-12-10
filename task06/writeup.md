@@ -1,3 +1,6 @@
+
+### Initial look
+
 Now that we know where the malware is we need to understand what it is doing. We can see that we need the IP, port, and pub key of the malware so this let's us deduce several things. First and formost, this peice of malware is communicatinting to a remote server. This is very normal when malware is part of a bot net (unlikely due to the senerio) or a implant for an APT style attack communicating to a command and control server (C2) which is more likely in this case.
 
 We also already know that this is not a stripped binary which will make it easier to reverse engineer which is very nice.
@@ -44,6 +47,8 @@ git_repository_free
 ```
 
 From this I can guess that something is being done witht the github repo and my suspision that the malware reaches out to a remote server is suppupported. From the previous challenge discription we know that this company has had problems with their source code being stolen before and all of these clues point to that.
+
+### Static Analisis with Ghidra
 
 At this point, I moved into more advanced static analisis of the binary using Gidrah because that seemed fiting due to the fact this is an NSA challenge. However tools like IDA, radare2, or binary ninja all would have worked as well. 
 
@@ -234,7 +239,9 @@ int kvhlfowzlznog(char *ip,uint16_t port,char *output,size_t length)
 
 At this point if we haden't guessed what the port was the 2nd argument passsed to the function we could definatly do that now. We also have seen the tgex function called enugh times that we are able to guess what it's purpose is simply from a black box perspective. It seems to be hiding the configuration strings needed for this program. This makes sense because anti virus software can be given certian strings (like a known bad IP) that cause it to block a program from running. Rather then simply hard code those values in, they are encrypted (or encoded since the key is also in the code) to prevent easy detection.
 
-At this point, let's look at how to do some dynamic analisis of this binary. The first thing to try is to simply run binary on my machine (Note: this is a bad idea when actually analizing malware as it could do real damage to your system. Always use a virtual machine or isolated machine.) This did not work easily as it requires some non standard libraries. While the error doesn't say what libraries is needed, after a bunch of work it seems to be the NaCL cryptography libraries. Simly installing the library did not work well so I desided to simply use the given docker image.
+### Dynamic Analisis
+
+Now, let's look at how to do some dynamic analisis of this binary. The first thing to try is to simply run binary on my machine (Note: this is a bad idea when actually analizing malware as it could do real damage to your system. Always use a virtual machine or isolated machine.) This did not work easily as it requires some non standard libraries. While the error doesn't say what libraries is needed, after a bunch of work it seems to be the NaCL cryptography libraries. Simly installing the library did not work well so I desided to simply use the given docker image.
 
 To make sure everything runs properly, edit the files in the tar directory to downoald a git repo that actually exists, I used a random one I control, and then repack everything into a valid docker tar image.
 
