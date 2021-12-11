@@ -125,7 +125,8 @@ which returns
 
 ```
  ...
-./usr/bin/make:                                                                                    ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not stripped
+./usr/bin/make: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked,
+interpreter /lib/ld-musl-x86_64.so.1, with debug_info, not stripped
 ...
 ```
 (The entire returned output is in search_for_non_stripped which is in this directory)
