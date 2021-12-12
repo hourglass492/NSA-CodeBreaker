@@ -39,7 +39,8 @@ From the Task's description, we needed to go farther to discover a domian that t
 
 ![image](https://user-images.githubusercontent.com/94944325/145699900-e5d7dc08-488b-4039-83a8-646b5660a5a5.png)
 
-Now that we got the data downloaded from the malicious actor's domain, we needed to modify the script to make sure no malicious code was execute on our machine. As seen in the last line of the script above, there is an *iex()* function being used. This function executes a string (presumably malware) constructed in the for-loop above. Our new script needed to remove that functionality and instead print the string that is attempting to be executed. The modified script is seen below, along with the output when runnning it. **Note the $hexString variable containing the data from the GET request is left out as it is over 12,000 bytes.**
+Now that we got the data downloaded from the malicious actor's domain, we needed to modify the script to make sure no malicious code was execute on our machine. As seen in the last line of the script above, there is an *iex()* function being used. This function executes a string (presumably malware) constructed in the for-loop above. Our new script needed to remove that functionality and instead print the string that is attempting to be executed. The modified script is seen below, along with the output when runnning it. 
+**Note the $hexString variable containing the data from the GET request is left out as it is over 12,000 bytes.**
 
 ```
 $hexString = ''
