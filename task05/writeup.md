@@ -43,16 +43,42 @@ For this challenge we are given a tarball of the docker image with the following
 
 This required a little bit of research to understand what docker files actually are.
 
-After extensive research online and in the docker official documents the cliff notes is that XXXXXXXXXXXXXXXXXXX
+After extensive research online and in the docker official documents the cliff notes is that docker imagies are just tar balls. These tarballs have the nessary files systems for the docker image to run and a bunch of configuration information to understand what to do when the docker image is called and other meta data.
 
 ### Looking at configurations
 
 Using this knowledge we know that it is possible for us to preform both static and dynamic analysis of this docker image to find the flags. Let's first begin by unpacking the tarball and reading through the information included in it.
 
+
+```
+ tar xvf image.tar
+./
+./2cc095b0e4503fa1915fc728065d784b233e403cce1cc4ec0964cadf643c6145/
+./2cc095b0e4503fa1915fc728065d784b233e403cce1cc4ec0964cadf643c6145/VERSION
+./2cc095b0e4503fa1915fc728065d784b233e403cce1cc4ec0964cadf643c6145/json
+./2cc095b0e4503fa1915fc728065d784b233e403cce1cc4ec0964cadf643c6145/layer.tar
+./c261b5b56ecae058351f68268e2cde9d6645d827435e27d6607512e60bb7658d/
+./c261b5b56ecae058351f68268e2cde9d6645d827435e27d6607512e60bb7658d/VERSION
+./c261b5b56ecae058351f68268e2cde9d6645d827435e27d6607512e60bb7658d/json
+./c261b5b56ecae058351f68268e2cde9d6645d827435e27d6607512e60bb7658d/layer.tar
+./d066676726e6f35bf5fed7b8eef7e425b62221c55260cd3f288bd0fd6d6d96ec/
+./d066676726e6f35bf5fed7b8eef7e425b62221c55260cd3f288bd0fd6d6d96ec/VERSION
+./d066676726e6f35bf5fed7b8eef7e425b62221c55260cd3f288bd0fd6d6d96ec/json
+./d066676726e6f35bf5fed7b8eef7e425b62221c55260cd3f288bd0fd6d6d96ec/layer.tar
+./d5591dd76f2a9aeb4519ab99ee5edcc679c788ee4d0e624b88feff8f3b308150.json
+./e820131f5f0dca9c211faf412e2e80dc081d89b6b5154706a437747aefa19fd2/
+./e820131f5f0dca9c211faf412e2e80dc081d89b6b5154706a437747aefa19fd2/VERSION
+./e820131f5f0dca9c211faf412e2e80dc081d89b6b5154706a437747aefa19fd2/json
+./e820131f5f0dca9c211faf412e2e80dc081d89b6b5154706a437747aefa19fd2/layer.tar
+./f8e939bf45f0b3822fadefc9e0b8a1001cbe2f7efbbf6214494ba4155a216bdd/
+./f8e939bf45f0b3822fadefc9e0b8a1001cbe2f7efbbf6214494ba4155a216bdd/VERSION
+./f8e939bf45f0b3822fadefc9e0b8a1001cbe2f7efbbf6214494ba4155a216bdd/json
+./f8e939bf45f0b3822fadefc9e0b8a1001cbe2f7efbbf6214494ba4155a216bdd/layer.tar
+./manifest.json
+./repositories
+```
+
 The first location we looked through where the repositories and manifest.json files held in the root of the tarball. However neither of them supplied much interesting information. 
-
-XXXXXXXXX Possibly include pictures of the file contents
-
 
 We then moved through reading all of the VERSION and json documents held in what we are assuming in the versioning history or something.
 
@@ -241,8 +267,7 @@ To find the remote GitHub repo then we need to navigate through the many differe
 
 This can easily be done with `tar xvf image.tar` and we can begin to look through all of the files.
 
-
-XXXXXXXXXXXXXX Talk about the lack of rc or cron jobs stuff and other standard malware persistence locations XXXXXXXXXXXXXXXXXXXXXxx
+We are looking for something that runs at startup so we can first look through all of the standard spaces where malware can gain persistence on a linux machine like the cron jobs and initrc. None of these have anything suspicious though. 
 
 These methods did not work so we returned to reading through the documentation about docker images and discovered that images can be configured to run commands when they are started. Upon looking through the larger json file we found the following ` "Cmd":["./build_test.sh"]," `. This lets us know that there is some script that builds something which is what we are looking for. To find this script we simply unpack all 4 of the tarballs and use `find . -iname build_test.sh` which returns the location of the script. 
 
