@@ -1,6 +1,6 @@
 ### First Insights
 
-After finihsing Task 1, we now know roughly 4 IP addresses in relation to the DIB companies that have communicated with the LP. One of the reporting companies *Online Operations and Production Services* (OOPS) has provided us with their network proxy logs, login data, and which subnet was associated with their company. The task is to now narrow down the logon ID of the user that communicated with the LP.
+After finishing Task 1, we now have roughly 4 IP addresses (varies from person to person) in relation to the DIB companies that have communicated with the LP. One of the reporting companies *Online Operations and Production Services* (OOPS) has provided us with their network proxy logs, login data, and which subnet was associated with their company. The task is to now narrow down the logon ID of the user that communicated with the LP.
 
 ### Starting the Task
 
