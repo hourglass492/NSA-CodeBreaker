@@ -71,12 +71,12 @@ The challenge description is as follows:
 
 > You have been provided a capture of data en route to the listening post as well as a list of DIB company IP ranges. Identify any IPs associated with the DIB that have communicated with the LP.
 
-####And you are given:
+#### And you are given:
     
     Network traffic heading to the LP (capture.pcap)
     DIB IP address ranges (ip_ranges.txt)
 
-####Overview of how challenge was completed:
+#### Overview of how challenge was completed:
 
 #### Task 2
 [Full Write up](task02/writeup.md)
@@ -90,13 +90,13 @@ The challenge description is as follows:
  > Identify the logon ID of the user session that communicated with the malicious LP (i.e.: on the machine that sent the beacon *and* active at the time the beacon was sent).
 
 
-####And you are given
+#### And you are given
 
     Subnet associated with OOPS (oops_subnet.txt)
     Network proxy logs from Bluecoat server (proxy.log)
     Login data from domain controller (logins.json)
 
-####Overview of how challenge was completed:
+#### Overview of how challenge was completed:
 
 
 #### Task 3
