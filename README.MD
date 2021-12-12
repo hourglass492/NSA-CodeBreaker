@@ -19,6 +19,7 @@ The NSA CodeBreaker challenge is a year competion between schools where "The NSA
 ### This years story
 
 The Internet is home to many different cyber actors. To better prepare for and defend against these actors, NSA routinely investigates foreign cyber actors and their activities. During one such investigation, a new IP address was identified to be part of an unknown actor's infrastructure. NSA believes it is a listening post (LP). The following Tasks will use network security and forensic tools to investigate this unknown actor's threat against the US Defense Industrial Base (DIB).
+
 DISCLAIMER - The following is a FICTITIOUS story meant for providing realistic context for the Codebreaker Challenge and is not tied in any way to actual events.
 
 
