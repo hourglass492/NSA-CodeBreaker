@@ -34,15 +34,15 @@ DISCLAIMER - The following is a FICTITIOUS story meant for providing realistic c
   - Seth 
     - Complete Challenges - 1-4
     - Final Documentation Writing
-    - Challenge write-ups - Task 3,4
+    - Challenge write-ups - Task 3, 4
   - Nitin 
     - Complete Challenges - TBD
     - Final Documentation Writing - TBD
     - Challenge write-ups - TBD
   - Kevin
-    - Complete Challenges - TBD
-    - Final Documentation Writing - TBD
-    - Challenge write-ups - TBD
+    - Complete Challenges - 1-3
+    - Final Documentation Writing
+    - Challenge write-ups - Task 2
   
 ### Attacks Seen and overview
   - Supply Chain
