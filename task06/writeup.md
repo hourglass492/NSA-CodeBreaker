@@ -1,7 +1,7 @@
 
 ### Initial look
 
-Now that we know where the malware is we need to understand what it is doing. We can see that we need the IP, port, and pub key of the malware so this let's us deduce several things. First and formost, this peice of malware is communicatinting to a remote server. This is very normal when malware is part of a bot net (unlikely due to the senerio) or a implant for an APT style attack communicating to a command and control server (C2) which is more likely in this case.
+Now that we know where the malware is we need to understand what it is doing. We can see that we need the IP, port, and pub key of the malware so this let's us deduce several things. First and foremost, this piece of malware is communicating to a remote server. This is very normal when malware is part of a bot net (unlikely due to the scenario) or an implant for an APT style attack communicating to a command and control server (C2) which is more likely in this case.
 
 We also already know that this is not a stripped binary which will make it easier to reverse engineer which is very nice.
 
@@ -13,9 +13,9 @@ make: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linke
 
 It is incredibly nice that debugging information was included as well as that will help work with this.
 
-The first step for me of analizing a binary is always running the strings command on it. This prints out all ascii characters in the binary and can give you an idea of what the binary does based on the function names and imports.
+The first step for me of analyzing a binary is always running the strings command on it. This prints out all ASCII characters in the binary and can give you an idea of what the binary does based on the function names and imports.
 
-However, a there's a god awful number of strings in the binary file so it is impossible to look at all of them. (A total of `$strings make | wc -l 35855`). The impoported functions are normally at the top of the strings in a binary file so I looked at with `strings make | less`. This didn't give me too much interesting information. I did find several git function importas and socket imported:
+However, a there's a god awful number of strings in the binary file so it is impossible to look at all of them. (A total of `$strings make | wc -l 35855`). The imported functions are normally at the top of the strings in a binary file so I looked at with `strings make | less`. This didn't give me too much interesting information. I did find several git function imported and socket imported:
 
 ```
 ...
@@ -46,16 +46,16 @@ git_repository_free
 ...
 ```
 
-From this I can guess that something is being done witht the github repo and my suspision that the malware reaches out to a remote server is suppupported. From the previous challenge discription we know that this company has had problems with their source code being stolen before and all of these clues point to that.
+From this I can guess that something is being done with the GitHub repo and my suspicion that the malware reaches out to a remote server is supported. From the previous challenge description we know that this company has had problems with their source code being stolen before and all of these clues point to that.
 
-### Static Analisis with Ghidra
+### Static Analysis with Ghidra
 
-At this point, I moved into more advanced static analisis of the binary using Gidrah because that seemed fiting due to the fact this is an NSA challenge. However tools like IDA, radare2, or binary ninja all would have worked as well. 
+At this point, I moved into more advanced static analysis of the binary using Ghidra because that seemed fitting due to the fact this is an NSA challenge. However tools like IDA, radare2, or binary ninja all would have worked as well. 
 
-As always, when analizing a program let's start at main if we know where that is. It's a pretty short setup so I can included it all here:
+As always, when analyzing a program let's start at main if we know where that is. It's a pretty short setup so I can included it all here:
 
 ```C
-int main(int argc,char **argv)
+int main(int argc, char **argv)
 
 {
   int iVar1;
@@ -69,9 +69,9 @@ int main(int argc,char **argv)
 }
 ```
 
-We see that this main function calls a function called gitGrabber, then get's some arguments from tgexpgbgxulli that then calls some other program using execvp. This gives us 2 directions to work in. We can either explore the  tgexpgbgxulli function or the gitGrabber. While I did originally look at tgexpgbgxulli, when working on this progect it is hard to understand without looking at gitGrabber. (I'll also note that gitGrabber is human readable which may be a nudge by the compition creators that we should look there first. A nudge I missed at first, but see now with hindsight.)
+We see that this main function calls a function called gitGrabber, then gets some arguments from tgexpgbgxulli that then calls some other program using execvp. This gives us 2 directions to work in. We can either explore the tgexpgbgxulli function or the gitGrabber. While I did originally look at tgexpgbgxulli, when working on this project it is hard to understand without looking at gitGrabber. (I'll also note that gitGrabber is human readable which may be a nudge by the competition creators that we should look there first. A nudge I missed at first, but see now with hindsight.)
 
-Opening gitGraber we see a more substantial function:
+Opening gitGrabber we see a more substantial function:
 ```C
 void gitGrabber(void)
 
@@ -137,7 +137,7 @@ void gitGrabber(void)
 }
 ```
 
-Looking through this we can get a pretty general idea of what is happening based on the varaible names (which we will assume are not missleading, but who knows).
+Looking through this we can get a pretty general idea of what is happening based on the variable names (which we will assume are not misleading, but who knows).
 
 In these lines
 ```C
@@ -147,7 +147,7 @@ In these lines
      (iVar3 = dxfivqvkpuunm(&ss), iVar3 == 0))
 ```
 
-It seems as if some sort of file discriptor is opended and then several checks happen, if any of these checks fail then the program exits out early. This means we probably want these checks to succseed.
+It seems as if some sort of file descriptor is opened and then several checks happen, if any of these checks fail then the program exits out early. This means we probably want these checks to succeed.
 
 Opening the qyvqmmhtjmlie function we see that it does the following
 
@@ -162,7 +162,7 @@ Opening the qyvqmmhtjmlie function we see that it does the following
   return iVar1;
 ```
 
-and  ndldgaiugwdhv does:
+and ndldgaiugwdhv does:
 ```C
 int iVar1;
   char *pcVar2;
@@ -191,9 +191,9 @@ int iVar1;
   return iVar1;
 ```
 
-Also looking through dxfivqvkpuunm (which was way too long to include and is in a seperate file in this directory)
+Also looking through dxfivqvkpuunm (which was way too long to include and is in a separate file in this directory)
 
-We can guess by the nuber of refrences to git that this is where the git repo is looked at before being stollen. It also makes sense that if there is no git repo on the system, then it can't do anything and simply returns.
+We can guess by the number of references to git that this is where the git repo is looked at before being stolen. It also makes sense that if there is no git repo on the system, then it can't do anything and simply returns.
 
 Looking farther down in the program we see the following lines of code:
 
@@ -205,7 +205,7 @@ Looking farther down in the program we see the following lines of code:
 ```
 and after this section of code, the program seems to end, so we can assume that this is where the meat of the operation happens.
 
-However, before we go farther it seems that we have found where 2 of the flags are. In order to use a socket (which we know from before this code does) you need to have an IP address and a port number. We directly see an variable labeled IP here and next to it an hard coded integer. At this point, I opended the program in GDB with GEF installed and simply called tgexpgbgxulli(0x13) which gave me the ip address and converted the hex port to an integer. (I will go into detail later in the walkthrough how to open and run stuff in GDB.) Both of these flags were correct letting me know that I was on the correct path.
+However, before we go farther it seems that we have found where 2 of the flags are. In order to use a socket (which we know from before this code does) you need to have an IP address and a port number. We directly see an variable labeled IP here and next to it an hard coded integer. At this point, I opened the program in GDB with GEF installed and simply called tgexpgbgxulli(0x13) which gave me the ip address and converted the hex port to an integer. (I will go into detail later in the walk through how to open and run stuff in GDB.) Both of these flags were correct letting me know that I was on the correct path.
 
 Now lets take a look at the monstrosity that is kvhlfowzlznog. Since it has over 200 lines (many longer then a single line) I won't paste it here, but the full decompiled code is also in the git repo. 
 
@@ -237,15 +237,15 @@ int kvhlfowzlznog(char *ip,uint16_t port,char *output,size_t length)
   ...
 ```
 
-At this point if we haden't guessed what the port was the 2nd argument passsed to the function we could definatly do that now. We also have seen the tgex function called enugh times that we are able to guess what it's purpose is simply from a black box perspective. It seems to be hiding the configuration strings needed for this program. This makes sense because anti virus software can be given certian strings (like a known bad IP) that cause it to block a program from running. Rather then simply hard code those values in, they are encrypted (or encoded since the key is also in the code) to prevent easy detection.
+At this point if we hadn't guessed what the port was the 2nd argument passed to the function we could definitely do that now. We also have seen the tgex function called enough times that we are able to guess what it's purpose is simply from a black box perspective. It seems to be hiding the configuration strings needed for this program. This makes sense because anti virus software can be given certain strings (like a known bad IP) that cause it to block a program from running. Rather then simply hard code those values in, they are encrypted (or encoded since the key is also in the code) to prevent easy detection.
 
-### Dynamic Analisis
+### Dynamic Analysis
 
-Now, let's look at how to do some dynamic analisis of this binary. The first thing to try is to simply run binary on my machine (Note: this is a bad idea when actually analizing malware as it could do real damage to your system. Always use a virtual machine or isolated machine.) This did not work easily as it requires some non standard libraries. While the error doesn't say what libraries is needed, after a bunch of work it seems to be the NaCL cryptography libraries. Simly installing the library did not work well so I desided to simply use the given docker image.
+Now, let's look at how to do some dynamic analysis of this binary. The first thing to try is to simply run binary on my machine (Note: this is a bad idea when actually analyzing malware as it could do real damage to your system. Always use a virtual machine or isolated machine.) This did not work easily as it requires some non standard libraries. While the error doesn't say what libraries is needed, after a bunch of work it seems to be the NaCL cryptography libraries. Simply installing the library did not work well so I decided to simply use the given docker image.
 
-To make sure everything runs properly, edit the files in the tar directory to downoald a git repo that actually exists, I used a random one I control, and then repack everything into a valid docker tar image.
+To make sure everything runs properly, edit the files in the tar directory to download a git repo that actually exists, I used a random one I control, and then repack everything into a valid docker tar image.
 
-Next load the tar image into docker. (For me it was loaded under 48cf127d0fad.) and then run it with the remote host IP assigned to it and the local folder shared to the root home to allow persitant files.
+Next load the tar image into docker. (For me it was loaded under 48cf127d0fad.) and then run it with the remote host IP assigned to it and the local folder shared to the root home to allow persistent files.
 
 ```bash
 #!/bin/bash
@@ -255,7 +255,7 @@ sudo mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd
 
 docker run --net mynet123 --ip 198.51.100.209 -v ${PWD}:/root -it 48cf127d0fad bash --init-file /root/setup
 ```
-This starts up the image and then runs the setup script which allows easy additons to the machine as you work with it.
+This starts up the image and then runs the setup script which allows easy additions to the machine as you work with it.
 
 My script is:
 ```bash
