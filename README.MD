@@ -212,3 +212,11 @@ The main defenses against trojinized binarys that we looked at in this challenge
 From the attacker side, the same advantages from task 5 apply, however with a larger focus on obfuscating the code. To a certian extent, you have to assume that your malware will eventiaully be found by the defenders. At this point obfuscation and packing are incredibly important and many different methiods could be used. Static analis could be made significantly more difficult by using layers of encryption and encoding that slowly undoes itself each round. This would even be more effective if the entire binary is never un encrypted at any one time to hinder dynamic analisis. Another ideal would be requieing the malware to retrieve a remote key. This could mean that if you suspect your malware is about to be or already has been captured you can stop serving up the key. If the defenders haven't captured the key yet the sample may be useless.
 ##### Improve Defence
 Malware anlising in this case is an incredibly interesting a detail driven job. A couple of the important things that would help the defender in this case are detailed log files and a large amount of time and extra resources to work on this project. There is a direct corrilation between how much time an alisit is able to put into a problem and how much information they are able to get out of it. In this case, it may make sense for the company to stop looking at the malware after task 6 and they know what it is doing. In fact there may even be enough to create an AV rule that detects similar implants and that is good enough for many companies. However, deeper analisis (as done in the solo tasks) can help give an much deeper understand of the ATP that we are dealing with and gives a chance to bring them to justice. The additonal liog files mentioned as will would be important to both detect the attack and to store a key sent over te wire if the malware uswed encryption as  mentioned abouve.
+
+### Conclusion
+
+### Sources
+
+Sources and references are included in each Task's write-up.
+https://nsa-codebreaker.org/challenge
+https://nsa-codebreaker.org/resources
