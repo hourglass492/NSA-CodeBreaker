@@ -108,11 +108,12 @@ The challenge discription is as follows:
  > Identify the message ID of the malicious email and the targeted server.
 
 
-####And you are given:
+And you are given:
 
     User's emails (emails.zip)
 
-####Overview of how challenge was completed:
+Overview of how challenge was completed:
+
 The emails given were examined by decoding the attached files. One of the emails contained a malicious powershell script, the message ID gives the first flag. The powershell script then had to be decoded to reveal a GET request, downloading data from the LP. The script had to be modifed to take the data from the .pcap file included in Task 1 and derive the code being constructed by the script. Once constructed, the script is seen to be POSTing scraped data to a domain and that is the second flag.
 
 
@@ -126,17 +127,18 @@ The challenge discription is as follows:
 
 
 
-####And you are given:
+And you are given:
 
     OOPS forensic artifacts (artifacts.zip)
     
-####And the flags are
+And the flags are
 
     The name of the machine the attackers can now access
     The username the attackers can use to access that machine  
    
    
-####Overview of how challenge was completed:
+Overview of how challenge was completed:
+
 Using the malicious script found in Task 4, the functinality of the script had to be determined. It was found to dig for PuTTY and WinSCP session data in the Windows Registry. From the given NTUSER file, you had to determine which PuTTY and WinSCP keys were persisted in the registry. Using the list of previous session, we had to determine which key was not encrypted. Once the non-encrypted key was found we had to go back to the registry and find the Hostname that the malware sent to the LP and now had access to.
 
 #### Task 5
