@@ -31,8 +31,10 @@ $dec = $(for ($i = 0; $i -lt $bytes.length; $i++) {
 iex([System.Text.Encoding]::UTF8.GetString($dec))
 ```
 
-At this point it was confirmed that this was the malicious script that was ran while the employee was browsing their email. This is because the first line of the script makes an HTTP call to *http://rokwz.invalid/security*, matching the call seen in Wireshark. You might think we found what this script was doing, right? No it is not... we were tasked with finding the domain that the script made a POST request to and the DownloadData() function is an HTTP GET request.
+At this point it was confirmed that this was the malicious script that was ran while the employee was browsing their email. This is because the first line of the script makes an HTTP call to *http://rokwz.invalid/security*, matching the call seen in the Wireshark capture in Task 1. You might think we found what this script was doing, right? No it is not... we were tasked with finding the domain that the script made a POST request to and the DownloadData() function is an HTTP GET request.
 
 ### Downloading the Data
 
+From the Task's description, we needed to go farther to discover a domian that the script was sending a POST request to. The only option to get there was to execute this script, but we don't want to make a call to the malicious actor's endpoint, so a modified script needed to be made to mimick the real script's functionality. This called for two steps: one, getting the endpoint data without making and HTTP call and two, changing the scipt to not execute the mystery code that is being downloaded. Luckily for us, the first step was already solved as the data from the request was captured in the .pcap file from Task 1 as seen below. 
+![image](https://user-images.githubusercontent.com/94944325/145699900-e5d7dc08-488b-4039-83a8-646b5660a5a5.png)
 
