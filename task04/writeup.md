@@ -127,9 +127,45 @@ $WinSCPPathEnding = "\SOFTWARE\Martin Prikryl\WinSCP 2\Sessions"
 
 ![image](https://user-images.githubusercontent.com/94944325/145702185-36260c1c-2458-4dc1-99ce-eb84cb5d11fb.png)
 
-Looking into the registry, we were able to narrow down the list of keys we needed to find that could be unencrypted.
-![image](https://user-images.githubusercontent.com/94944325/145702220-e11866e9-264f-4a22-8ace-248b463eba21.png)
-![image](https://user-images.githubusercontent.com/94944325/145702234-fc112f06-a083-4d61-a894-afe4fc4ad68d.png)
+Looking into the registry, we were able to narrow down the list of keys we needed to find that could be unencrypted. We can see that there are 5 PuTTY keys that we need to verifyied.
 
 
 ### Determine Comprimise
+
+After knowing which PuTTY Sessions were stored in the employee's registy, we now need to look at the session keys to make sure they are encrypted. After searching through the 5 keys present, we found that the key for dkr_prd72 was not encrypted, meaning the LP now how the credentials to ssh into the machine.
+
+```
+PuTTY-User-Key-File-2: ssh-rsa
+Encryption: none
+Comment: __COMP4__
+Public-Lines: 6
+AAAAB3NzaC1yc2EAAAABJQAAAQEAi2xdUFsRQhaU92qNU6U+pbUbHT+8me2TiY+v
+8Nc3VHBuQRQ1p4OjJuhryN0dTv18uaW1lc1uFBHWExpPYaBAP3O7HzTfRD/o5xYH
+L2+NMELqIeMkHMa/5BDzOB+sTObQdLJ5ZlAlczBdDsKI7hQwp9w6VherXzadGx2N
+rD/uME4ETJZj/a3WqdmYU5JinX58DwM8zqALh3CMZP0ZE7tPiW5vyEo6TDYX9o02
+l2V5+Cah8zpyXSiIYEe3WKqp2Ohl83J2E/FuWse3kGiSdBVk3JMtmsZkzmL25wh9
+K3LjdS3hzmi6z7IT1rmU+5yOR+Km9dTCvqY27AU0fouGNlDi8w==
+Private-Lines: 14
+AAABAHELwUgSfLIgJcGwVunf7ZsdOJRBhCnHjGGyxgGL56w/e/1qVQRc5SZ3QqLc
+y6fUcvdjw6nk1csVYXdFw9Kdm+BrrHoq3opdVQ5k4zs32kLOeKXaw1WaOrjrJhHU
+fd184F6ei/IXeE+O/1gTWkR/ErGdzm9RdjGGOjGpQm/8e+/PWYizwcOTJfCXuFKF
+qaOJbCovinuFic+376Rhgo5Vo0sqqjlkRC8EPrewBbjc157Y2okKVmoc2H75XV1/
+uBZ3o6oS8KknQAwYSdQZmdLnx2Uqft8j5MvdjsA+JHRmIjPWa2/UjOaPjPi4U6OH
+uC1tK+xUF7Du0OAHIErSQYTeDv0AAACBANOT1+3kz7BzkptUoYJL6Y34S7NMemYu
+IzcgWP+4fH4MS9G6yd2B+vUff/yo3uWddF/o8A0TLyjHTY01EVIN+qafgcqPD4aA
+GjQonifN0KJnsa8XqADuW4qZl7vB8ZNOA8SYHtpzgVbYsnABus8LV5g3AqAFI7UF
+DEMEJ6ZQ3P8HAAAAgQCoskcpQUJEODaImSnkbklPFeNNpYl7YaY2PivWNDuZKPaH
+18j3oU+AJ7QhzsuKbB5FlHlhHG9lpwrhp8AW4mtCRnLpGqj2urGw4jNgIibmIsau
+1k/85JhNT0Y/HjaMXrK61wf/YfcoujTf9HYX0VE2cK6wLBezfVaN6ukXn3MVtQAA
+AIB2+HEmxXUIAqNj7Us3KjvUXVEzzYfT+J+MqkC22GJbKsUWGb+0EWTSLgTQtI83
+WxEFBGJ1fo5pQ0KHDEdry9+s91yrHlMnfQBl33R8eKZKdknvh53C0ney+4C21Fc+
+u++6hO4qP3foJEIJ4t7wPTtMOVNHRkfFLnGPSFy7jwjWMA==
+Private-MAC: 69516e4c3f42737590234ba010954761879abd61
+```
+
+![image](https://user-images.githubusercontent.com/94944325/145702220-e11866e9-264f-4a22-8ace-248b463eba21.png)
+
+![image](https://user-images.githubusercontent.com/94944325/145702234-fc112f06-a083-4d61-a894-afe4fc4ad68d.png)
+
+To complete this task, we were looking for the Hostname and Machine that the attacker now has access to, this can be seen in the snippits of the registry variables above. Since the PuTTY key is not encrypted, the LP can now ssh into the machine freely using builder07@drk_prd72.
+
