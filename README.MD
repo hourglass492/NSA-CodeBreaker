@@ -218,5 +218,7 @@ Malware anlising in this case is an incredibly interesting a detail driven job. 
 ### Sources
 
 Sources and references are included in each Task's write-up.
+
 https://nsa-codebreaker.org/challenge
+
 https://nsa-codebreaker.org/resources
