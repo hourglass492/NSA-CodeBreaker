@@ -199,10 +199,13 @@ It is important to note that the senerio given assumes that the NSA had already 
 ##### Improve Defense
 #### task2
 ##### Attackers Avoidance
+In this task, we detect the suspicious activity by looking at the IPs communicating with the listening post. To further narrow down that detection, we looked at the time of occurrence (that matched the subnet in the pcap file) in the proxy logs to get the IP of the machine being used. Lastly using both the time and IP of the machine, we are able to narrow down our suspects to a single user. Using just the IP that communicated with the LP, we are capable of detecting which user was online and active on the machine at the time of the request.
 ##### Improve Defense
+The current origin of the attack is unknown at this time in the challenge, so the defense correlates with the defense of Task 3.
 #### task3
 ##### Attackers Avoidance
 ##### Improve Defense
+In Task 3, we discover that the attack was performed through a malicious link in an email. The best way to improve defense would be either: have the user pay better attention to their emails and only click on links of senders that can be absolutely trusted, or to have a better anti-virus installed to immediately take action when said link is clicked (downloaded).
 #### task4
 ##### Attackers Avoidance
 ##### Improve Defense
