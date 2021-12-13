@@ -77,6 +77,7 @@ The challenge description is as follows:
     DIB IP address ranges (ip_ranges.txt)
 
 #### Overview of how challenge was completed:
+Simply by matching the IP subnets with any IP addresses in the pcap file.
 
 #### Task 2
 [Full Write up](task02/writeup.md)
@@ -97,6 +98,7 @@ The challenge description is as follows:
     Login data from domain controller (logins.json)
 
 #### Overview of how challenge was completed:
+Using the subnet given, we are able to quickly see the time of the attack, and utilize that time in the proxy file. The proxy file gives us an IP for the machine used and with that and checking the times while users were logged in, we can narrow down the logonID of the culprit.
 
 
 #### Task 3
