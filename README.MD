@@ -28,21 +28,21 @@ DISCLAIMER - The following is a FICTITIOUS story meant for providing realistic c
 
 ### Individual Contributions
   - Nicholas
-    - Complete Challenges 1-6
+    - Complete Challenges: 1-6
     - Final Documentation Writing
-    - Challenge write-ups - Task 5, 6
+    - Challenge write-ups: Task 5, 6
   - Seth 
-    - Complete Challenges - 1-4
+    - Complete Challenges: 1-4
     - Final Documentation Writing
-    - Challenge write-ups - Task 3, 4
+    - Challenge write-ups: Task 3, 4
   - Nitin 
-    - Complete Challenges - TBD
+    - Complete Challenges: TBD
     - Final Documentation Writing
-    - Challenge write-ups - TBD
+    - Challenge write-ups: TBD
   - Kevin
-    - Complete Challenges - 1-3
+    - Complete Challenges: 1-3
     - Final Documentation Writing
-    - Challenge write-ups - Task 2
+    - Challenge write-ups: Task 2
   
 ### Attacks Seen and overview
   - Supply Chain
