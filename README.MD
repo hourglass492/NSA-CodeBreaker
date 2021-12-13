@@ -199,11 +199,12 @@ It is important to note that the senerio given assumes that the NSA had already 
 ##### Improve Defense
 #### task2
 ##### Attackers Avoidance
-In this task, we detect the suspicious activity by looking at the IPs communicating with the listening post. To further narrow down that detection, we looked at the time of occurrence (that matched the subnet in the pcap file) in the proxy logs to get the IP of the machine being used. Lastly using both the time and IP of the machine, we are able to narrow down our suspects to a single user. Using just the IP that communicated with the LP, we are capable of detecting which user was online and active on the machine at the time of the request.
+It was fairly easy for the attacker so far, the only reason the attack has been easy to narrow down in Task 2, is due to the low amount of activity from the matching IP address. With this the defense is able to see a suspicious HTTP request, but currently doesn't know the true nature of the attack. That will be discussed more in Task 3.
 ##### Improve Defense
 The current origin of the attack is unknown at this time in the challenge, so the defense correlates with the defense of Task 3.
 #### task3
 ##### Attackers Avoidance
+The attacker does a great job at making their attack complicated and hidden. We are able to realize it is an attack through email, given that the user claims to have only used email during their time logged in. If the user was doing more on the machine, the attack would have been much harder to find. Given the nature of email threats, we are able to narrow down the email with links/downloads in them a quickly find one that is flagged as a virus (or suspicous file). Encrypting the data in Base64 helps the nature of the attack to be more hidden, but after getting cracked by a defender, the attacker put another way of encryption in via PowerShell code. Having several layer of encryption ensures a more complex virus and making its contents harder to figure out.
 ##### Improve Defense
 In Task 3, we discover that the attack was performed through a malicious link in an email. The best way to improve defense would be either: have the user pay better attention to their emails and only click on links of senders that can be absolutely trusted, or to have a better anti-virus installed to immediately take action when said link is clicked (downloaded).
 #### task4
