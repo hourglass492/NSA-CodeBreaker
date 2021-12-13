@@ -46,3 +46,19 @@ shows source and destination IP addresses, Protocol, and any additional info.
 
 ### Identify IP Addresses
 
+Now based on the ip ranges that were found in *ip_ranges.txt*, we will have to search for which specific IPs that have communicated with the LP. We can use the folllowing command to make this easier:
+
+```
+ip_addr== 'ip address'
+```
+Now we will have to manually enter each ip range. After entering approximately 27 ip ranges, 4-5 ip addresses should've appeared under the filter:
+
+```
+198.18.136.129
+10.228.20.40
+172.27.69.32
+172.18.198.11
+```
+With this information in hand, task 1 is complete!
+Onto task 2!
+
