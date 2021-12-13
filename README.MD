@@ -1,4 +1,4 @@
-### Assignment requirements
+### Assignment Requirements
 
 - The report should be in PDF format and should be a maximum of 12 pages long and not less than 7 pages.
  - The report should include:
@@ -12,11 +12,11 @@
    - Sources of your information (references)
 
 
-### What is the NSA codebreaker challenge
+### What is the NSA Codebreaker Challenge
 
 The NSA CodeBreaker challenge is a year competition between schools where "The NSA ... provides students with a hands-on opportunity to develop their reverse-engineering / low-level code analysis skills while working on a realistic problem set centered around the NSA's mission." The competition is divided into 2 parts, solo and team, each consisting of 6 and 4 challenges respectively. 
 
-### This years story
+### This Year's Story
 
 The Internet is home to many different cyber actors. To better prepare for and defend against these actors, NSA routinely investigates foreign cyber actors and their activities. During one such investigation, a new IP address was identified to be part of an unknown actor's infrastructure. NSA believes it is a listening post (LP). The following Tasks will use network security and forensic tools to investigate this unknown actor's threat against the US Defense Industrial Base (DIB).
 
@@ -44,12 +44,12 @@ DISCLAIMER - The following is a FICTITIOUS story meant for providing realistic c
     - Final Documentation Writing
     - Challenge write-ups: Task 2
   
-### Attacks Seen and overview
+### Attacks Seen and Overview
   - Supply Chain
   - Phishing
   - Malware
 
-### Overview of skills Involved
+### Overview of Skills Involved
   - Log analysis and forensics
   - Powershell Malware analysis
   - Windows Registry Forensics
