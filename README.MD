@@ -36,9 +36,9 @@ DISCLAIMER - The following is a FICTITIOUS story meant for providing realistic c
     - Final Documentation Writing
     - Challenge write-ups: Task 3, 4
   - Nitin 
-    - Complete Challenges: TBD
+    - Complete Challenges: 1-2
     - Final Documentation Writing
-    - Challenge write-ups: TBD
+    - Challenge write-ups: Task 1
   - Kevin
     - Complete Challenges: 1-3
     - Final Documentation Writing
