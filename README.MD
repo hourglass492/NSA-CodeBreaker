@@ -37,7 +37,7 @@ DISCLAIMER - The following is a FICTITIOUS story meant for providing realistic c
     - Challenge write-ups - Task 3, 4
   - Nitin 
     - Complete Challenges - TBD
-    - Final Documentation Writing - TBD
+    - Final Documentation Writing
     - Challenge write-ups - TBD
   - Kevin
     - Complete Challenges - 1-3
@@ -191,36 +191,36 @@ Drop the binary file into a reverse engineering program. After analyzing source 
 
 
 ### Detection and defense of attacks
-It is important to note that the senerio given assumes that the NSA had already compromised the malicious listening post and captured the packets to discover the compromise. This is unrealistic for the average company as it is illegal to attack suspected malicious servers in the US. However, it is perfectly reasonable for this whole thing to be kicked off by suspicious communication to an unknown server by several computers within a controlled corporate network. 
+It is important to note that the scenerio given assumes that the NSA had already compromised the malicious listening post and captured the packets to discover the compromise. This is unrealistic for the average company as it is illegal to attack suspected malicious servers in the US. However, it is perfectly reasonable for this whole thing to be kicked off by suspicious communication to an unknown server by several computers within a controlled corporate network. 
 
 
 #### task1
-##### Attackers Avoidance
+##### Attacker's Avoidance
 Task 1 is only identifying the IPs that communicated with the listening post. Currently from the attcaker's side, there isn't much worth noting yet.
 ##### Improve Defense
 The current origin of the attack is unknown at this time in the challenge, so the defense correlates with the defense of Task 3.
 #### task2
-##### Attackers Avoidance
+##### Attacker's Avoidance
 It was fairly easy for the attacker so far, the only reason the attack has been easy to narrow down in Task 2, is due to the low amount of activity from the matching IP address. With this the defense is able to see a suspicious HTTP request, but currently doesn't know the true nature of the attack. That will be discussed more in Task 3.
 ##### Improve Defense
 Like Task 1, the current origin of the attack is unknown at this time in the challenge, so the defense correlates with the defense of Task 3.
 #### task3
-##### Attackers Avoidance
+##### Attacker's Avoidance
 The attacker does a great job at making their attack complicated and hidden. We are able to realize it is an attack through email, given that the user claims to have only used email during their time logged in. If the user was doing more on the machine, the attack would have been much harder to find. Given the nature of email threats, we are able to narrow down the email with links/downloads in them a quickly find one that is flagged as a virus (or suspicious file). Encrypting the data in Base64 helps the nature of the attack to be more hidden, but after getting cracked by a defender, the attacker put another way of encryption in via PowerShell code. Having several layer of encryption ensures a more complex virus and making its contents harder to figure out.
 ##### Improve Defense
 In Task 3, we discover that the attack was performed through a malicious attachment in an email. The best way to improve defense would be either: have phishing email training for employees, improve the companies email filter, or to have a better anti-virus installed to immediately take action when said attachemnt is clicked (downloaded). Improving employees ability to spot phishing emails seems like the best option in this case as it appeared that he employee was not phased at all about having been a target of a spear phishing attack. Overall the ability to spot these attacks will be the best line of defense.
 #### task4
-##### Attackers Avoidance
+##### Attacker's Avoidance
 The attacker was smart in this task to avoid being spotted. First, the executed powershell script was ran in a hidden window, so the user of the machine would not know that the script was executing. Second, the script did not directly contain malicious code, to allow it to pass an anti-virus scan. Instead the script downloaded seemingly useless data thorugh an HTTP GET call and constructed the code itself. Lastly, the script had a delay between the GET request and POSTing the information it had scraped from the user's machine, making the two events appear to be unrelated, once again avoiding an IPS system.
 ##### Improve Defense
 The best line of defense against this script would be to not allow users to execute powershell script on their machine unless as admin. This would have forced the script to prompt "Run Powershell as Administrator", alerting the user of it. Another method of avoidance would be to have a better IPS system in place. This might have alerted the firewall of malicious traffic and blocked the request from getting to the user's machine or sending data to the LP. Though it is hard to detect malware once it is on the machine, a better Firewall table might have detected and stopped this event.
 #### task5
-##### Attackers Avoidance
+##### Attacker's Avoidance
 In this case the malware was detected on the machine due in part of guessing based on the nature of CTF's. If this wasn't the case it would have been possible to hide the malware better. This obviously would mean stripping the binary so that it does not stand out. However, editing a known binary such as make leaves the attacker vulnerable to programs such as debsums which compares the hash of all of the binaries on the computer to a known good one on a remote system. This would be possible to get around however by infecting some underlying code needed in checking the hash. The idea behind this was first stated in an paper by Ken Thompson [on trusting trust](https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf). By infecting the debsums equivalent it would be possible to hard code it to always return that debsums is correct. If there is not a debsums type application installed trojonizing make would work just fine
 ##### Improve Defense
 The main defenses against trojanized binaries that we looked at in this challenge is cryptographic signatures and certificates. The idea would be using known good hashes for each binary to check against. If any of the binaries were edited to make them malicious then the hashes would change. It would also be possible to sign the docker image itself with a gpg key. Assuming that the attackers did not find this key on the server, they would be unable to change anything in the docker image without breaking the signature attached to it.
 #### task6
-##### Attackers Avoidance
+##### Attacker's Avoidance
 From the attacker side, the same advantages from task 5 apply, however with a larger focus on obfuscating the code. To a certain extent, you have to assume that your malware will eventually be found by the defenders. At this point obfuscation and packing are incredibly important and many different methods could be used. Static analyzing could be made significantly more difficult by using layers of encryption and encoding that slowly undoes itself each round. This would even be more effective if the entire binary is never un encrypted at any one time to hinder dynamic analisis. Another ideal would be requiring the malware to retrieve a remote key. This could mean that if you suspect your malware is about to be or already has been captured you can stop serving up the key. If the defenders haven't captured the key yet the sample may be useless.
 ##### Improve Defense
 Malware analyzing in this case is an incredibly interesting a detail driven job. A couple of the important things that would help the defender in this case are detailed log files and a large amount of time and extra resources to work on this project. There is a direct correlation between how much time an analyzst is able to put into a problem and how much information they are able to get out of it. In this case, it may make sense for the company to stop looking at the malware after task 6 and they know what it is doing. In fact there may even be enough to create an AV rule that detects similar implants and that is good enough for many companies. However, deeper analisis (as done in the solo tasks) can help give an much deeper understand of the ATP that we are dealing with and gives a chance to bring them to justice. The additional log files mentioned as will would be important to both detect the attack and to store a key sent over the wire if the malware used encryption as  mentioned above.
