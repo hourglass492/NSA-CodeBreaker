@@ -39,7 +39,7 @@ To begin with we are given a text file with a list of IP Ranges in the *ip_range
 10.255.30.0/24
 198.19.176.0/21
 ```
-By itself these ranges have no value to us so we will need to set it aside. Next we come across a .pcap file more specifically *capture.pcap*
+By itself these ranges have no value to us so we will need to set it aside. Next we come across a .pcap file more specifically *capture.pcap*.
 
 To analyze the various different sources and the network traffic, we will have to open up the file in WireShark. The file within Wireshark
 shows source and destination IP addresses, Protocol, and any additional info. 
