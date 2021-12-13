@@ -196,12 +196,14 @@ It is important to note that the senerio given assumes that the NSA had already 
 
 #### task1
 ##### Attackers Avoidance
+Task 1 is only identifying the IPs that communicated with the listening post. Currently from the attcaker's side, there isn't much worth noting yet.
 ##### Improve Defense
+The current origin of the attack is unknown at this time in the challenge, so the defense correlates with the defense of Task 3.
 #### task2
 ##### Attackers Avoidance
 It was fairly easy for the attacker so far, the only reason the attack has been easy to narrow down in Task 2, is due to the low amount of activity from the matching IP address. With this the defense is able to see a suspicious HTTP request, but currently doesn't know the true nature of the attack. That will be discussed more in Task 3.
 ##### Improve Defense
-The current origin of the attack is unknown at this time in the challenge, so the defense correlates with the defense of Task 3.
+Like Task 1, the current origin of the attack is unknown at this time in the challenge, so the defense correlates with the defense of Task 3.
 #### task3
 ##### Attackers Avoidance
 The attacker does a great job at making their attack complicated and hidden. We are able to realize it is an attack through email, given that the user claims to have only used email during their time logged in. If the user was doing more on the machine, the attack would have been much harder to find. Given the nature of email threats, we are able to narrow down the email with links/downloads in them a quickly find one that is flagged as a virus (or suspicious file). Encrypting the data in Base64 helps the nature of the attack to be more hidden, but after getting cracked by a defender, the attacker put another way of encryption in via PowerShell code. Having several layer of encryption ensures a more complex virus and making its contents harder to figure out.
