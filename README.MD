@@ -227,8 +227,6 @@ From the attacker side, the same advantages from task 5 apply, however with a la
 ##### Improve Defense
 Malware analyzing in this case is an incredibly interesting a detail driven job. A couple of the important things that would help the defender in this case are detailed log files and a large amount of time and extra resources to work on this project. There is a direct correlation between how much time an analyzst is able to put into a problem and how much information they are able to get out of it. In this case, it may make sense for the company to stop looking at the malware after task 6 and they know what it is doing. In fact there may even be enough to create an AV rule that detects similar implants and that is good enough for many companies. However, deeper analisis (as done in the solo tasks) can help give an much deeper understand of the ATP that we are dealing with and gives a chance to bring them to justice. The additional log files mentioned as will would be important to both detect the attack and to store a key sent over the wire if the malware used encryption as  mentioned above.
 
-### Conclusion
-
 ### Sources
 
 Sources and references are included in each Task's write-up.
