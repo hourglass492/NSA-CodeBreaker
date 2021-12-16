@@ -1,3 +1,5 @@
+Author: kscanlon3 on Github
+
 ### First Insights
 
 After finishing Task 1, we now have roughly 4 IP addresses (varies from person to person) in relation to the DIB companies that have communicated with the LP. One of the reporting companies *Online Operations and Production Services* (OOPS) has provided us with their network proxy logs, login data, and which subnet was associated with their company. The task is to now narrow down the logon ID of the user that communicated with the LP.
@@ -35,3 +37,5 @@ First step is to search through the login file for that IP we discovered. Upon d
 After several attempts, most users had logged on roughly 25 minutes before the incident, and logged off quickly (within 5 minutes), meaning they couldn't have been the culprit. However, one ID (*0x37E2E1*) hadn't logged off for 3 whole hours after logging in (Login: *11:47:50*, Logout: *14:45:25*). This proves that they were online during the incident and matched the IP from the proxy log, making them our culprit.
 
 Onto the next Task!
+
+Author: kscanlon3 on Github
