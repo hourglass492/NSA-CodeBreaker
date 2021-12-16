@@ -5,9 +5,9 @@ At this point in the investigation we now know that we had a malicious script ex
 ### Malware Examination
 
 Our first step to find the comprimised OOPS account is to examine the malware. The entire script is included in this task's directory, but we will be using snippits of it.
-After the inital function declarations, we see that there is a global log that is being sent back to the listning post and the Invoke-SessionGopher function is called. We will start there.
+After the inital function declarations, we see that there is a global log that is being sent back to the listning post and the Invoke-SessionGopher function is called. It is also the only function really called from the main line so we will start there.
 
-```
+```powershell
 function Invoke-SessionGopher {
   # Value for HKEY_USERS hive
   $HKU = 2147483651
@@ -72,7 +72,7 @@ function Invoke-SessionGopher {
 ```
 This function acts as the "main" of the script. It gives away what data the malware is attempting to dig in the declarations of *$PuTTYPathEnding* and *$WinSCPPathEnding*. These tell us that the malware is attempting to look for stored data about the machine's PuTTY and WinSCP sessions. The malware then looks in the Windows User Registry for all past and current users on the machine. After collecting all of the users, the script calls two methods, *ProcessWinSCPLocal* and *ProcessPuTTYLocal*. This confirms that the malware is digging for ssh credentials. We will now look at the *ProcessPuTTYLocal* method.
 
-```
+``` powershell
 function ProcessPuTTYLocal($AllPuTTYSessions) {
 
   # For each PuTTY saved session, extract the information we want
@@ -118,9 +118,9 @@ Now knowing that the malware is searching for unsecure keys stored on the machin
 
 ### Understand Windows Registry
 
-The first step to examine the Registry is to know how to open the file. After research, I was able to load the hive onto my machine and was ready to see what the malware touched. Following the path in the malware, I was albe to see that there was a decent amount of files that the malware examined. 
+The first step to examine the Registry is to know how to open the file. After research, I was able to load the hive onto my windows machine and was ready to see what the malware touched. (Note: regexsh also works for linux machines to examine the file from the command line.) Following the path in the malware, I was albe to see that there was a decent amount of files that the malware examined. 
 
-```
+```powershell
 $PuTTYPathEnding = "\SOFTWARE\SimonTatham\PuTTY\Sessions"
 $WinSCPPathEnding = "\SOFTWARE\Martin Prikryl\WinSCP 2\Sessions"
 ```
@@ -162,6 +162,8 @@ WxEFBGJ1fo5pQ0KHDEdry9+s91yrHlMnfQBl33R8eKZKdknvh53C0ney+4C21Fc+
 u++6hO4qP3foJEIJ4t7wPTtMOVNHRkfFLnGPSFy7jwjWMA==
 Private-MAC: 69516e4c3f42737590234ba010954761879abd61
 ```
+
+In order to get the flags of the user and machine, we simply need to navigate to the this keys location in the registry file and extract the value of the key.
 
 ![image](https://user-images.githubusercontent.com/94944325/145702220-e11866e9-264f-4a22-8ace-248b463eba21.png)
 
