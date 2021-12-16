@@ -171,3 +171,8 @@ In order to get the flags of the user and machine, we simply need to navigate to
 
 To complete this task, we were looking for the Hostname and Machine that the attacker now has access to, this can be seen in the snippits of the registry variables above. Since the PuTTY key is not encrypted, the LP can now ssh into the machine freely using builder07@drk_prd72.
 
+Author 
+@seththegardner
+Editor
+Hourglass aka Me
+
