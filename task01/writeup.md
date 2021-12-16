@@ -1,3 +1,5 @@
+Author: AwesomArcher8093 on Github
+
 ### First Insights
 
 For Task 1 of the 2021 NSA Codebreaker Challenge, our primary objective is to prevent threats to the US Defense Industrial Base. 
