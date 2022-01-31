@@ -20,27 +20,6 @@ The Internet is home to many different cyber actors. To better prepare for and d
 DISCLAIMER - The following is a FICTITIOUS story meant for providing realistic context for the Codebreaker Challenge and is not tied in any way to actual events.
 
 
-
-
-
-### Individual Contributions
-  - Nicholas
-    - Complete Challenges: 1-6
-    - Final Documentation Writing
-    - Challenge write-ups: Task 5, 6
-  - Seth 
-    - Complete Challenges: 1-4
-    - Final Documentation Writing
-    - Challenge write-ups: Task 3, 4
-  - Nitin 
-    - Complete Challenges: 1-2
-    - Final Documentation Writing
-    - Challenge write-ups: Task 1
-  - Kevin
-    - Complete Challenges: 1-3
-    - Final Documentation Writing
-    - Challenge write-ups: Task 2
-  
 ### Attacks Seen and Overview
   - Supply Chain
   - Phishing
